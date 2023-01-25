@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-iam": "^3.257.0",
+    "@aws-sdk/client-s3": "^3.257.0",
     "@heroicons/react": "^2.0.13",
     "@next/font": "13.1.4",
     "@types/node": "18.11.18",

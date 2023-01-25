@@ -4,10 +4,14 @@ import PageWrapper from "@/components/PageWrapper";
 import TrackSection from "@/components/TrackSection";
 import TrackControl from "@/components/TrackControl/TrackControl";
 import { TrackPlayerProvider } from "@/context/TrackPlayerProvider";
+import { getAllFilesFromBucket, getFileFromBucket } from "@/lib/s3";
+import { Simulate } from "react-dom/test-utils";
+import { useEffect, useState } from "react";
+import TrackList from "@/components/TrackList";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+export default function Home({ files }) {
   return (
     <>
       <Head>
@@ -19,7 +23,19 @@ export default function Home() {
       <TrackPlayerProvider>
         <PageWrapper>
           <main className="flex justify-center items-center min-h-screen">
-            <TrackSection />
+            <TrackSection
+              tracks={[
+                {
+                  title: "Stop Breathing",
+                  audioSrc: `data:audio/mpeg;base64,${files[2]}`,
+                  imageSrc: "/",
+                  datePosted: new Date(),
+                  audioLength: 224,
+                  shareHyperlink: "/",
+                  downloadHyperLink: "/",
+                },
+              ]}
+            />
             <TrackControl />
           </main>
         </PageWrapper>
@@ -28,6 +44,12 @@ export default function Home() {
   );
 }
 
-export function getServerSideProps() {
-  return { props: {} };
+export async function getServerSideProps() {
+  try {
+    const files = await getAllFilesFromBucket();
+    return { props: { files } };
+  } catch (error) {
+    console.log(error);
+    return { props: { files: "" } };
+  }
 }

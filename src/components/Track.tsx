@@ -31,8 +31,6 @@ export default function Track(props: TrackProps) {
     audioRef,
   } = useContext(TrackPlayerContext) || {};
 
-  console.log(selectedTrackIndex);
-
   return (
     <div className="flex justify-between items-center w-96 text-sm">
       <audio
