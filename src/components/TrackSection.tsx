@@ -1,24 +1,14 @@
 import TrackList from "@/components/TrackList";
-import { useEffect, useState } from "react";
-import { Track } from "@/types";
+import { useContext, useEffect } from "react";
+import { TrackPlayerContext } from "@/context/TrackPlayerProvider";
 
-interface TrackSection {}
+interface TrackSectionProps {}
 
-export default function TrackSection() {
-  const [tracks, setTracks] = useState<Track[]>([
-    {
-      title: "Stop Breathing",
-      audioSrc: "/0.wav",
-      imageSrc: "/",
-      datePosted: new Date(),
-      audioLength: 224,
-      shareHyperlink: "/",
-      downloadHyperLink: "/",
-    },
-  ]);
+export default function TrackSection({}: TrackSectionProps) {
+  const { tracks } = useContext(TrackPlayerContext) || {};
 
   // TODO: fetch tracks from server
-  useEffect(() => {}, []);
+  useEffect(() => {});
 
-  return <TrackList tracks={tracks} />;
+  return <TrackList tracks={tracks ? tracks : []} />;
 }

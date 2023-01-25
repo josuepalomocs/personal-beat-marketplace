@@ -1,6 +1,6 @@
 import { Track as TrackType } from "@/types";
 import Track from "@/components/Track";
-import { formatAudioLength } from "@/utility/time";
+import { formatAudioTimestamp } from "@/utility/time";
 
 interface TrackListProps {
   tracks: TrackType[];
@@ -22,6 +22,7 @@ export default function TrackList({ tracks }: TrackListProps) {
       return (
         <li key={index} className="text-neutral-400">
           <Track
+            index={index}
             title={title}
             audioSrc={audioSrc}
             imageSrc={imageSrc}
