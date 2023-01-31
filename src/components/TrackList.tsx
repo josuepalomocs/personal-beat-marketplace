@@ -8,8 +8,9 @@ interface TrackListProps {
 
 export default function TrackList({ tracks }: TrackListProps) {
   function renderTracks() {
-    return tracks.map((track, index) => {
+    return tracks.map((track) => {
       const {
+        id,
         title,
         audioSrc,
         imageSrc,
@@ -20,9 +21,9 @@ export default function TrackList({ tracks }: TrackListProps) {
       } = track;
 
       return (
-        <li key={index} className="text-neutral-400">
+        <li key={id} className="text-neutral-400">
           <Track
-            index={index}
+            id={id}
             title={title}
             audioSrc={audioSrc}
             imageSrc={imageSrc}
@@ -36,5 +37,5 @@ export default function TrackList({ tracks }: TrackListProps) {
     });
   }
 
-  return <ul className="">{renderTracks()}</ul>;
+  return <ul className="flex flex-col space-y-3">{renderTracks()}</ul>;
 }

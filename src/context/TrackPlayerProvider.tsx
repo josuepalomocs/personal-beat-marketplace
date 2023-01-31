@@ -6,15 +6,15 @@ interface TrackPlayerProviderProps {
   children: ReactNode;
 }
 
-export const TrackPlayerContext = createContext<TrackPlayer | undefined>(
-  undefined
-);
+// TODO: FIX ANY TYPE HERE
+export const TrackPlayerContext = createContext<any | undefined>(undefined);
 
 export function TrackPlayerProvider({ children }: TrackPlayerProviderProps) {
   const trackPlayer = useTrackPlayer([
     {
-      title: "Stop Breathing",
-      audioSrc: "/0.wav",
+      id: 0,
+      title: "0",
+      audioSrc: "/tracks/audio/0.wav",
       imageSrc: "/",
       datePosted: new Date(),
       audioLength: 224,
@@ -22,8 +22,9 @@ export function TrackPlayerProvider({ children }: TrackPlayerProviderProps) {
       downloadHyperLink: "/",
     },
     {
-      title: "Stop Breathing",
-      audioSrc: "/0.wav",
+      id: 1,
+      title: "1",
+      audioSrc: "/tracks/audio/0.wav",
       imageSrc: "/",
       datePosted: new Date(),
       audioLength: 224,
@@ -31,8 +32,19 @@ export function TrackPlayerProvider({ children }: TrackPlayerProviderProps) {
       downloadHyperLink: "/",
     },
     {
-      title: "Stop Breathing",
-      audioSrc: "/0.wav",
+      id: 2,
+      title: "01",
+      audioSrc: "/tracks/audio/0.wav",
+      imageSrc: "/",
+      datePosted: new Date(),
+      audioLength: 224,
+      shareHyperlink: "/",
+      downloadHyperLink: "/",
+    },
+    {
+      id: 3,
+      title: "11",
+      audioSrc: "/tracks/audio/0.wav",
       imageSrc: "/",
       datePosted: new Date(),
       audioLength: 224,

@@ -1,28 +1,26 @@
 import { formatAudioTimestamp } from "@/utility/time";
-import { useEffect, useState } from "react";
+import React from "react";
 
 interface SliderProps {
-  timeElapsed: number;
-  audioLength: number;
+  min: number;
+  max: number;
+  value: number;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function Slider({ timeElapsed, audioLength }: SliderProps) {
-  const sliderFillPercentage = (timeElapsed / audioLength) * 100;
-
+export default function Slider({ min, max, value, handleChange }: SliderProps) {
   return (
-    <div className="flex items-center space-x-3 text-sm text-neutral-400">
-      <p className="">{formatAudioTimestamp(timeElapsed)}</p>
-      <div className="relative w-96 h-1 bg-neutral-600 rounded">
-        <div
-          className={`h-1 bg-neutral-100 rounded`}
-          style={{
-            width: `${
-              sliderFillPercentage < 100 ? sliderFillPercentage : 100
-            }%`,
-          }}
-        ></div>
-      </div>
-      <p className="">{formatAudioTimestamp(audioLength)}</p>
+    <div className="flex items-center space-x-3 text-xs text-neutral-400">
+      <p className="">{formatAudioTimestamp(Math.trunc(value))}</p>
+      <input
+        className="w-96 h-0.5 accent-neutral-600"
+        type="range"
+        min={min}
+        max={max}
+        value={value}
+        onChange={handleChange}
+      />
+      <p className="">{formatAudioTimestamp(max)}</p>
     </div>
   );
 }

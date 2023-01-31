@@ -6,13 +6,11 @@ import { useContext, useRef, useState } from "react";
 import useTrackPlayer from "@/hooks/useTrackPlayer";
 import { TrackPlayerContext } from "@/context/TrackPlayerProvider";
 
-interface TrackProps extends TrackType {
-  index: number;
-}
+interface TrackProps extends TrackType {}
 
 export default function Track(props: TrackProps) {
   const {
-    index,
+    id,
     title,
     audioSrc,
     imageSrc,
@@ -23,36 +21,33 @@ export default function Track(props: TrackProps) {
   } = props;
 
   const {
-    selectedTrackIndex,
-    setSelectedTrackIndex,
-    selectTrack,
+    tracks,
+    selectedTrack,
+    selectTrackById,
     isPlaying,
-    togglePlayAudio,
+    playTrack,
+    pauseTrack,
+    resetCurrentTimeToStart,
     audioRef,
   } = useContext(TrackPlayerContext) || {};
 
+  function handleClick() {
+    if (!selectedTrack || selectedTrack.id !== id) {
+      return selectTrackById(id);
+    }
+    if (!isPlaying) {
+      return playTrack();
+    }
+    pauseTrack();
+  }
+
   return (
-    <div className="flex justify-between items-center w-96 text-sm">
-      <audio
-        src={audioSrc}
-        ref={selectedTrackIndex === index ? audioRef : undefined}
-      />
-      <button
-        className=""
-        onClick={() => {
-          if (selectTrack) {
-            selectTrack(index);
-          }
-        }}
-      >
-        {isPlaying && selectedTrackIndex === index ? (
-          <PauseCircleIcon className="w-8" />
-        ) : (
-          <PlayCircleIcon className="w-8" />
-        )}
+    <div className="flex justify-between items-center w-96 text-xs">
+      <button onClick={handleClick}>
+        <div className="w-16 h-16 border border-neutral-600"></div>
       </button>
-      <p>{title}</p>
-      <p>{formatDate(datePosted, "MMM DD | YYYY")}</p>
+      <p>{title.toUpperCase()}</p>
+      <p>{formatDate(datePosted, "MMM DD YYYY").toUpperCase()}</p>
       <p>{formatAudioTimestamp(audioLength)}</p>
     </div>
   );

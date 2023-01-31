@@ -6,8 +6,6 @@ interface PageWrapperProps {
 
 export default function PageWrapper({ children }: PageWrapperProps) {
   return (
-    <div className="w-screen min-h-screen bg-neutral-900 text-white">
-      {children}
-    </div>
+    <div className="w-screen min-h-screen bg-black text-white">{children}</div>
   );
 }

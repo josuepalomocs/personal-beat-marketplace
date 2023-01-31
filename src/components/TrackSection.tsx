@@ -4,11 +4,8 @@ import { TrackPlayerContext } from "@/context/TrackPlayerProvider";
 
 interface TrackSectionProps {}
 
-export default function TrackSection({ tracks }: TrackSectionProps) {
-  // const { tracks } = useContext(TrackPlayerContext) || {};
-
-  // TODO: fetch tracks from server
-  useEffect(() => {});
+export default function TrackSection() {
+  const { tracks } = useContext(TrackPlayerContext) || {};
 
   return <TrackList tracks={tracks ? tracks : []} />;
 }

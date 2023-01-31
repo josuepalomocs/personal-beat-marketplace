@@ -1,6 +1,7 @@
 import { Dispatch, RefObject, SetStateAction } from "react";
 
 export interface Track {
+  id: number;
   title: string;
   audioSrc: string;
   imageSrc: string;
@@ -13,13 +14,12 @@ export interface Track {
 export interface TrackPlayer {
   tracks: Track[];
   selectedTrack: Track;
-  selectedTrackIndex: number;
-  setSelectedTrackIndex: Dispatch<SetStateAction<number>>;
-  selectTrack: (index: number) => void;
+  selectTrackById: (index: number) => void;
   selectPreviousTrack: () => void;
   selectNextTrack: () => void;
   isPlaying: boolean;
   togglePlayAudio: () => void;
+  stopAudio: () => void;
   isLooping: boolean;
   toggleLoopAudio: () => void;
   isMuted: boolean;

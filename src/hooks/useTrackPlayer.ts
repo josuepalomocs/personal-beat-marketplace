@@ -1,19 +1,33 @@
 import { useEffect, useRef, useState } from "react";
-import { Track, TrackPlayer } from "@/types";
+import { Track } from "@/types";
 
-export default function useTrackPlayer(tracks: Track[]): TrackPlayer {
-  const [selectedTrackIndex, setSelectedTrackIndex] = useState(0);
+export default function useTrackPlayer(tracks: Track[]) {
+  const [selectedTrack, setSelectedTrack] = useState<Track | null>(null);
+  const [selectedTrackIndex, setSelectedTrackIndex] = useState(-1);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLooping, setIsLooping] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [volume, setVolume] = useState(1);
+  const [currentTime, setCurrentTime] = useState(0);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
-  const selectedTrack = tracks[selectedTrackIndex];
-  let audioRef = useRef<HTMLAudioElement>(null);
+  useEffect(() => {
+    setSelectedTrack(tracks[selectedTrackIndex]);
+  }, [selectedTrackIndex]);
 
-  function selectTrack(index: number) {
-    setSelectedTrackIndex(index);
-    togglePlayAudio();
+  useEffect(() => {
+    if (selectedTrack && audioRef.current) {
+      audioRef.current.src = `/tracks/audio/${selectedTrack?.id || "0"}.wav`;
+      playTrack();
+    }
+  }, [selectedTrack]);
+
+  function selectTrackById(selectedTrackId: number) {
+    tracks.forEach(({ id }, index) => {
+      if (selectedTrackId === id) {
+        setSelectedTrackIndex(index);
+      }
+    });
   }
 
   function selectPreviousTrack() {
@@ -21,37 +35,27 @@ export default function useTrackPlayer(tracks: Track[]): TrackPlayer {
       setSelectedTrackIndex(selectedTrackIndex - 1);
     }
   }
-
   function selectNextTrack() {
-    if (selectedTrackIndex < tracks.length - 1) {
+    if (selectedTrack && selectedTrackIndex < tracks.length - 1) {
       setSelectedTrackIndex(selectedTrackIndex + 1);
     }
   }
 
-  function togglePlayAudio() {
-    if (audioRef.current) {
-      if (!isPlaying) {
-        return audioRef.current
-          .play()
-          .then(() => setIsPlaying(true))
-          .catch((error) => console.log(error));
-      }
-      audioRef.current.pause();
-      setIsPlaying(false);
-    }
+  function playTrack() {
+    audioRef.current
+      ?.play()
+      .then(() => setIsPlaying(true))
+      .catch((error) => console.log(error));
   }
 
-  function toggleLoopAudio() {
-    if (audioRef.current) {
-      audioRef.current.loop = !isLooping;
-      setIsLooping(!isLooping);
-    }
+  function pauseTrack() {
+    audioRef.current?.pause();
+    setIsPlaying(false);
   }
 
-  function toggleMuteAudio() {
+  function resetCurrentTimeToStart() {
     if (audioRef.current) {
-      audioRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
+      audioRef.current.currentTime = 0;
     }
   }
 
@@ -59,18 +63,15 @@ export default function useTrackPlayer(tracks: Track[]): TrackPlayer {
     tracks,
     selectedTrack,
     selectedTrackIndex,
-    setSelectedTrackIndex,
-    selectTrack,
+    selectTrackById,
     selectPreviousTrack,
     selectNextTrack,
     isPlaying,
-    togglePlayAudio,
-    isLooping,
-    toggleLoopAudio,
-    isMuted,
-    toggleMuteAudio,
-    volume,
-    setVolume,
+    playTrack,
+    pauseTrack,
+    resetCurrentTimeToStart,
+    currentTime,
+    setCurrentTime,
     audioRef,
   };
 }
