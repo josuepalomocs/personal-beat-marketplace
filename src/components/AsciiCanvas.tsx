@@ -8,5 +8,5 @@ interface AsciiCanvasProps {
 export default function AsciiCanvas({ imageSrc, size }: AsciiCanvasProps) {
   const { canvasRef } = useAsciiCanvas({ imageSrc, size });
 
-  return <canvas ref={canvasRef} />;
+  return <canvas className="w-[200px] sm:w-[400px]" ref={canvasRef} />;
 }

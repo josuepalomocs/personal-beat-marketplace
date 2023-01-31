@@ -1,30 +1,27 @@
 import { Dispatch, RefObject, SetStateAction } from "react";
 
-export interface Track {
+export interface Artwork {
   id: number;
-  title: string;
-  audioSrc: string;
   imageSrc: string;
-  datePosted: Date;
-  audioLength: number;
-  shareHyperlink: string;
-  downloadHyperLink: string;
+  date: Date;
+  musicalKey: string;
+  bpm: number;
 }
 
-export interface TrackPlayer {
-  tracks: Track[];
-  selectedTrack: Track;
-  selectTrackById: (index: number) => void;
-  selectPreviousTrack: () => void;
-  selectNextTrack: () => void;
-  isPlaying: boolean;
-  togglePlayAudio: () => void;
-  stopAudio: () => void;
-  isLooping: boolean;
-  toggleLoopAudio: () => void;
-  isMuted: boolean;
-  toggleMuteAudio: () => void;
-  volume: number;
-  setVolume: Dispatch<SetStateAction<number>>;
-  audioRef: RefObject<HTMLAudioElement>;
-}
+// export interface TrackPlayer {
+//   tracks: Artwork[];
+//   selectedTrack: Artwork;
+//   selectTrackById: (index: number) => void;
+//   selectPreviousTrack: () => void;
+//   selectNextTrack: () => void;
+//   isPlaying: boolean;
+//   togglePlayAudio: () => void;
+//   stopAudio: () => void;
+//   isLooping: boolean;
+//   toggleLoopAudio: () => void;
+//   isMuted: boolean;
+//   toggleMuteAudio: () => void;
+//   volume: number;
+//   setVolume: Dispatch<SetStateAction<number>>;
+//   audioRef: RefObject<HTMLAudioElement>;
+// }
