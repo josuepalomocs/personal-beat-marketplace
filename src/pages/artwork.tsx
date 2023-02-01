@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ArtworkGrid from "@/components/ArtworkGrid";
 import { Artwork as IArtwork } from "@/types";
+import AsciiCanvas from "@/components/AsciiCanvas";
 
 interface ArtworkProps {}
 

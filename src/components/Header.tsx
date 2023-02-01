@@ -11,8 +11,8 @@ export default function Header({}: HeaderProps) {
       <Link className="hover:text-white" href="/artwork">
         ARTWORK
       </Link>
-      <Link className="hover:text-white" href="/license">
-        LICENSE
+      <Link className="hover:text-white" href="/licenses">
+        LICENSES
       </Link>
       <Link className="hover:text-white" href="/contact">
         CONTACT

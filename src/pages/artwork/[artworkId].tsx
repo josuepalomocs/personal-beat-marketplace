@@ -7,7 +7,7 @@ import Artwork from "@/components/Artwork";
 
 interface ArtworkProps {}
 
-export default function Artwork({}: ArtworkProps) {
+export default function ArtworkPage({}: ArtworkProps) {
   return (
     <>
       <Head>
