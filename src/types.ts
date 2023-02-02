@@ -8,18 +8,17 @@ import {
 
 export interface Artwork {
   id: number;
+  audioSrc: string;
   imageSrc: string;
   date: Date;
   musicalKey: string;
   bpm: number;
+  href: string;
 }
 
 export interface ArtworkPlayer {
-  currentArtwork: Artwork;
   isPlaying: boolean;
   togglePlayPause: () => void;
-  selectPreviousArtwork: () => void;
-  selectNextArtwork: () => void;
   audioRef: RefObject<HTMLAudioElement>;
   currentTime: number;
   duration: number;

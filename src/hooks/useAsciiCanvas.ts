@@ -172,7 +172,7 @@ export default function useAsciiCanvas({
           currentImageDataColumn * imageDataWidth,
           currentImageDataRow * imageDataHeight
         );
-      }, (i / 80) * 0.25 * Math.random());
+      }, i * 10 * 0.25 * Math.random());
     }
   }
 

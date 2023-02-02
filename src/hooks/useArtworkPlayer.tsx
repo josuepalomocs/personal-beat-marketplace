@@ -1,31 +1,22 @@
-import { Artwork, ArtworkPlayer } from "@/types";
-import {
-  ChangeEvent,
-  SyntheticEvent,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { ArtworkPlayer } from "@/types";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 
 interface UseArtworkPlayerParams {
-  artwork: Artwork[];
+  audioSrc: string;
 }
 
 export default function useArtworkPlayer({
-  artwork,
+  audioSrc,
 }: UseArtworkPlayerParams): ArtworkPlayer {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [currentArtworkIndex, setCurrentArtworkIndex] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isAudioRefLoaded, setIsAudioRefLoaded] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
 
-  let currentArtwork = artwork[currentArtworkIndex];
-
   useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.src = "/artwork/0/0.wav";
+      audioRef.current.src = audioSrc;
       audioRef.current.onloadedmetadata = () => {
         setDuration(audioRef.current!.duration);
         setIsAudioRefLoaded(true);
@@ -62,33 +53,12 @@ export default function useArtworkPlayer({
     }
   }, [isPlaying]);
 
-  useEffect(() => {
-    if (isAudioRefLoaded) {
-      audioRef.current!.pause();
-      audioRef.current!.src = `/artwork/${currentArtworkIndex}/${currentArtworkIndex}.wav`;
-      audioRef.current!.play().catch((error) => console.log(error));
-      setIsPlaying(true);
-    }
-  }, [currentArtworkIndex]);
-
   function togglePlayPause() {
     if (!isPlaying) {
       setIsPlaying(true);
       return;
     }
     setIsPlaying(false);
-  }
-
-  function selectPreviousArtwork() {
-    if (currentArtworkIndex > 0) {
-      setCurrentArtworkIndex(currentArtworkIndex - 1);
-    }
-  }
-
-  function selectNextArtwork() {
-    if (currentArtworkIndex < artwork.length - 1) {
-      setCurrentArtworkIndex(currentArtworkIndex + 1);
-    }
   }
 
   function handleSliderChange(e: ChangeEvent<HTMLInputElement>) {
@@ -99,11 +69,8 @@ export default function useArtworkPlayer({
   }
 
   return {
-    currentArtwork,
     isPlaying,
     togglePlayPause,
-    selectPreviousArtwork,
-    selectNextArtwork,
     audioRef,
     currentTime,
     duration,

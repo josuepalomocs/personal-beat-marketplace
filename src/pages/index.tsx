@@ -19,25 +19,22 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <TrackPlayerProvider>
-        <PageWrapper>
-          <Header />
-          <main className="flex flex-1 flex-col justify-center items-center">
-            <div>
-              <div className="flex justify-between text-sm text-neutral-300 mb-12">
-                <Link className="hover:text-white" href="#">
-                  ⇜ PREVIOUS
-                </Link>
-                <Link className="hover:text-white" href="#">
-                  NEXT ⇝
-                </Link>
-              </div>
-              <Artwork />
+      <PageWrapper>
+        <Header />
+        <main className="flex flex-1 flex-col justify-center items-center">
+          <div>
+            <div className="flex justify-between text-sm text-neutral-300 mb-12">
+              <Link className="hover:text-white" href="#">
+                ⇜ PREVIOUS
+              </Link>
+              <Link className="hover:text-white" href="#">
+                NEXT ⇝
+              </Link>
             </div>
-          </main>
-          <Footer />
-        </PageWrapper>
-      </TrackPlayerProvider>
+          </div>
+        </main>
+        <Footer />
+      </PageWrapper>
     </>
   );
 }

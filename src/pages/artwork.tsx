@@ -3,45 +3,16 @@ import PageWrapper from "@/components/PageWrapper";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ArtworkGrid from "@/components/ArtworkGrid";
-import { Artwork as IArtwork } from "@/types";
-import AsciiCanvas from "@/components/AsciiCanvas";
-import Artwork from "@/components/Artwork";
-import ArtworkPlayer from "@/components/ArtworkPlayer";
-import ArtworkPlayerProvider from "@/context/ArtworkPlayerProvider";
 
 interface ArtworkProps {}
 
 export default function ArtworkPage({}: ArtworkProps) {
-  const artworkList: IArtwork[] = [
-    {
-      id: 0,
-      imageSrc: "prox.jpg",
-      date: new Date(),
-      musicalKey: "c#",
-      bpm: 154,
-    },
-    {
-      id: 1,
-      imageSrc: "prox.jpg",
-      date: new Date(),
-      musicalKey: "c#",
-      bpm: 154,
-    },
-    {
-      id: 2,
-      imageSrc: "prox.jpg",
-      date: new Date(),
-      musicalKey: "c#",
-      bpm: 154,
-    },
-    {
-      id: 3,
-      imageSrc: "prox.jpg",
-      date: new Date(),
-      musicalKey: "c#",
-      bpm: 154,
-    },
+  const artworkList = [
+    { id: 1, href: "/artwork/1" },
+    { id: 2, href: "/artwork/2" },
+    { id: 3, href: "/artwork/3" },
   ];
+
   return (
     <>
       <Head>
@@ -50,17 +21,13 @@ export default function ArtworkPage({}: ArtworkProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <ArtworkPlayerProvider>
-        <PageWrapper>
-          <Header />
-          <main className="flex flex-1 flex-col justify-center items-center text-sm text-neutral-300">
-            {/*<ArtworkGrid artworkList={artworkList} />*/}
-            <Artwork />
-            <ArtworkPlayer />
-          </main>
-          <Footer />
-        </PageWrapper>
-      </ArtworkPlayerProvider>
+      <PageWrapper>
+        <Header />
+        <main className="flex flex-1 flex-col justify-center items-center text-sm text-neutral-300">
+          <ArtworkGrid artworkList={artworkList} />
+        </main>
+        <Footer />
+      </PageWrapper>
     </>
   );
 }

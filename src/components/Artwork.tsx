@@ -2,29 +2,27 @@ import AsciiCanvas from "@/components/AsciiCanvas";
 import ArtworkData from "@/components/ArtworkData";
 // @ts-ignore
 import { Pause, Play } from "feather-icons-react";
+import { Artwork as IArtwork } from "@/types";
+import ArtworkPlayer from "@/components/ArtworkPlayer";
 
-interface ArtworkProps {}
+interface ArtworkProps extends IArtwork {}
 
-export default function Artwork({}: ArtworkProps) {
+export default function Artwork(props: ArtworkProps) {
+  const { id, audioSrc, imageSrc, date, musicalKey, bpm, href } = props;
+
   return (
-    <div className="">
+    <div className="flex flex-col">
       <div className="flex items-center mb-8">
         <ArtworkData
-          id={24}
-          date={new Date()}
-          musicalKey="c#"
-          bpm={154}
-          href="#"
+          id={id}
+          date={date}
+          musicalKey={musicalKey}
+          bpm={bpm}
+          href={href}
         />
-        <AsciiCanvas imageSrc="/prox.jpeg" size="md" />
+        <AsciiCanvas imageSrc={imageSrc} size="md" />
       </div>
-      {/*<div className="flex items-center space-x-4">*/}
-      {/*  <button className="relative top-[0px] text-neutral-300">*/}
-      {/*    /!*<Pause className="text-neutral-300 fill-neutral-300" size={16} />*!/*/}
-      {/*    <Play className="text-neutral-300 fill-neutral-300" size={16} />*/}
-      {/*  </button>*/}
-      {/*  <input className="w-full h-[2px] accent-emerald-600" type="range" />*/}
-      {/*</div>*/}
+      <ArtworkPlayer audioSrc={audioSrc} />
     </div>
   );
 }
