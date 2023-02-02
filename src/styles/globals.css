@@ -3,9 +3,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    background: inherit;
-    color: transparent;
-}

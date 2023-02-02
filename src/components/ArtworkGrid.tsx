@@ -1,4 +1,3 @@
-import Artwork from "@/components/Artwork";
 import { Artwork as IArtwork } from "../types";
 import Link from "next/link";
 import { convertIdToFormattedBitString } from "@/utility/bitstring";
@@ -12,7 +11,7 @@ export default function ArtworkGrid({ artworkList }: ArtworkGridProps) {
     return artworkList.map(({ id }) => {
       return (
         <li className="text-center" key={id}>
-          <Link className="hover:text-emerald-400" href="#">
+          <Link className="hover:text-emerald-400" href="/artwork/1">
             <p>{convertIdToFormattedBitString(id)}</p>
             <p>{id}</p>
           </Link>

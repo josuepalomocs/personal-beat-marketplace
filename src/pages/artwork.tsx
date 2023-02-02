@@ -5,35 +5,38 @@ import Header from "@/components/Header";
 import ArtworkGrid from "@/components/ArtworkGrid";
 import { Artwork as IArtwork } from "@/types";
 import AsciiCanvas from "@/components/AsciiCanvas";
+import Artwork from "@/components/Artwork";
+import ArtworkPlayer from "@/components/ArtworkPlayer";
+import ArtworkPlayerProvider from "@/context/ArtworkPlayerProvider";
 
 interface ArtworkProps {}
 
-export default function Artwork({}: ArtworkProps) {
+export default function ArtworkPage({}: ArtworkProps) {
   const artworkList: IArtwork[] = [
     {
       id: 0,
-      imageSrc: "tx.jpg",
+      imageSrc: "prox.jpg",
       date: new Date(),
       musicalKey: "c#",
       bpm: 154,
     },
     {
       id: 1,
-      imageSrc: "tx.jpg",
+      imageSrc: "prox.jpg",
       date: new Date(),
       musicalKey: "c#",
       bpm: 154,
     },
     {
       id: 2,
-      imageSrc: "tx.jpg",
+      imageSrc: "prox.jpg",
       date: new Date(),
       musicalKey: "c#",
       bpm: 154,
     },
     {
       id: 3,
-      imageSrc: "tx.jpg",
+      imageSrc: "prox.jpg",
       date: new Date(),
       musicalKey: "c#",
       bpm: 154,
@@ -47,13 +50,17 @@ export default function Artwork({}: ArtworkProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <PageWrapper>
-        <Header />
-        <main className="flex flex-1 flex-col justify-center items-center text-sm text-neutral-300">
-          <ArtworkGrid artworkList={artworkList} />
-        </main>
-        <Footer />
-      </PageWrapper>
+      <ArtworkPlayerProvider>
+        <PageWrapper>
+          <Header />
+          <main className="flex flex-1 flex-col justify-center items-center text-sm text-neutral-300">
+            {/*<ArtworkGrid artworkList={artworkList} />*/}
+            <Artwork />
+            <ArtworkPlayer />
+          </main>
+          <Footer />
+        </PageWrapper>
+      </ArtworkPlayerProvider>
     </>
   );
 }

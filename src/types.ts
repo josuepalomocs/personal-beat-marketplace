@@ -1,4 +1,10 @@
-import { Dispatch, RefObject, SetStateAction } from "react";
+import {
+  ChangeEvent,
+  Dispatch,
+  RefObject,
+  SetStateAction,
+  SyntheticEvent,
+} from "react";
 
 export interface Artwork {
   id: number;
@@ -8,20 +14,14 @@ export interface Artwork {
   bpm: number;
 }
 
-// export interface TrackPlayer {
-//   tracks: Artwork[];
-//   selectedTrack: Artwork;
-//   selectTrackById: (index: number) => void;
-//   selectPreviousTrack: () => void;
-//   selectNextTrack: () => void;
-//   isPlaying: boolean;
-//   togglePlayAudio: () => void;
-//   stopAudio: () => void;
-//   isLooping: boolean;
-//   toggleLoopAudio: () => void;
-//   isMuted: boolean;
-//   toggleMuteAudio: () => void;
-//   volume: number;
-//   setVolume: Dispatch<SetStateAction<number>>;
-//   audioRef: RefObject<HTMLAudioElement>;
-// }
+export interface ArtworkPlayer {
+  currentArtwork: Artwork;
+  isPlaying: boolean;
+  togglePlayPause: () => void;
+  selectPreviousArtwork: () => void;
+  selectNextArtwork: () => void;
+  audioRef: RefObject<HTMLAudioElement>;
+  currentTime: number;
+  duration: number;
+  handleSliderChange: (e: ChangeEvent<HTMLInputElement>) => void;
+}

@@ -24,7 +24,7 @@ export default function TrackControl({}: TrackControlProps) {
     <div className="fixed bottom-0 flex flex-col justify-center items-center space-y-3 w-screen h-36">
       <audio
         className="w-0 h-0"
-        src="/tracks/audio/0.wav"
+        src="/artwork/0/0.wav"
         ref={audioRef}
         onTimeUpdate={handleOnTimeUpdate}
       />
