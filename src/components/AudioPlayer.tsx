@@ -1,7 +1,5 @@
 // @ts-ignore
-import { SkipBack, SkipForward, Play, Pause } from "feather-icons-react";
-import { useContext } from "react";
-import { ArtworkPlayerContext } from "@/context/ArtworkPlayerProvider";
+import { Pause, Play, SkipBack, SkipForward } from "feather-icons-react";
 import { formatAudioTimestamp } from "@/utility/time";
 import useArtworkPlayer from "@/hooks/useArtworkPlayer";
 
@@ -9,7 +7,7 @@ interface AudioPlayerProps {
   audioSrc: string;
 }
 
-export default function ArtworkPlayer({ audioSrc }: AudioPlayerProps) {
+export default function AudioPlayer({ audioSrc }: AudioPlayerProps) {
   const {
     audioRef,
     isPlaying,
@@ -30,7 +28,7 @@ export default function ArtworkPlayer({ audioSrc }: AudioPlayerProps) {
           )}
         </button>
         <input
-          className="w-full h-[2px] accent-emerald-600 border-0"
+          className="w-full h-[1px] accent-emerald-600 border-0"
           type="range"
           min={0}
           max={

@@ -1,12 +1,9 @@
 import Head from "next/head";
 import { Inter } from "@next/font/google";
 import PageWrapper from "@/components/PageWrapper";
-import { TrackPlayerProvider } from "@/context/TrackPlayerProvider";
-import AsciiCanvas from "@/components/AsciiCanvas";
 import Link from "next/link";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import Artwork from "@/components/Artwork";
 
 const inter = Inter({ subsets: ["latin"] });
 

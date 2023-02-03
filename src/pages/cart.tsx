@@ -1,18 +1,10 @@
 import Head from "next/head";
 import PageWrapper from "@/components/PageWrapper";
-import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import TrackGrid from "@/components/TrackGrid";
+import Footer from "@/components/Footer";
 
-interface ArtworkProps {}
-
-export default function ArtworkPage({}: ArtworkProps) {
-  const artworkList = [
-    { id: 1, href: "/artwork/1" },
-    { id: 2, href: "/artwork/2" },
-    { id: 3, href: "/artwork/3" },
-  ];
-
+export default function CartPage() {
   return (
     <>
       <Head>
@@ -24,7 +16,10 @@ export default function ArtworkPage({}: ArtworkProps) {
       <PageWrapper>
         <Header />
         <main className="flex flex-1 flex-col justify-center items-center text-sm text-neutral-300">
-          <TrackGrid artworkList={artworkList} />
+          <p>IN CART</p>
+          <ul>
+            <li></li>
+          </ul>
         </main>
         <Footer />
       </PageWrapper>

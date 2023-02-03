@@ -1,19 +1,12 @@
-import {
-  ChangeEvent,
-  Dispatch,
-  RefObject,
-  SetStateAction,
-  SyntheticEvent,
-} from "react";
+import { ChangeEvent, RefObject } from "react";
 
-export interface Artwork {
+export interface Track {
   id: number;
   audioSrc: string;
   imageSrc: string;
   date: Date;
   musicalKey: string;
   bpm: number;
-  href: string;
 }
 
 export interface ArtworkPlayer {
@@ -23,4 +16,21 @@ export interface ArtworkPlayer {
   currentTime: number;
   duration: number;
   handleSliderChange: (e: ChangeEvent<HTMLInputElement>) => void;
+}
+
+export type LicenseTypes =
+  | "starter"
+  | "premium"
+  | "trackouts"
+  | "unlimited"
+  | "exclusive";
+
+export interface License {
+  trackId: number;
+  type: LicenseTypes;
+  price?: number;
+}
+
+export interface Cart {
+  licenses: License[];
 }
